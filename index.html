@@ -6,26 +6,55 @@
 	<title>TicTacToe</title>
 	<style type="text/css">
 		#box{
-/*			border: 1px solid red;*/
+			border: 1px solid red;
 			text-align: center;
 			position: relative;
 			top:10px;
-			width: 90%;
+			width: 90vw;
+			height: 90vh;
 			margin-left:auto;
 			margin-right:auto;
 		}
+		@media only screen and (min-width: 768px) {
+  			#box div div{
+  				width: 100px;
+				height: 100px;
+  			}
+		}
+
+		@media only screen and (max-width: 768px) {
+  			
+  			#box div div{
+  				width:75px;
+  				height: 75px;
+  			}
+		}
+
 		#box div div{
 			display: inline-block;
-			width: 100px;
-			height: 100px;
 			border: 1px solid black;
 			border-radius: 5px;
 			margin: 5px;
 			background-repeat: no-repeat;
-			background-size: cover;
+			background-size: contain;
 		}
 		div div:hover{
 			cursor: pointer;
+		}
+
+		#resetBtn{
+			margin-top:10px;
+			padding:10px;
+			border: 1px solid black;
+			background-color: black;
+			color:white;
+			transition: 0.2s;
+			font-size:16px;
+		}
+		#resetBtn:hover{
+			background-color: white;
+			color:black;
+			cursor:pointer;
 		}
 	</style>
 </head>
@@ -51,7 +80,7 @@
 	<div onclick="game(this.id);" id="8"></div>
 </div>
 
-<button onclick="resetGame();">Reset Game</button>
+<button id="resetBtn" onclick="resetGame();">Reset Game</button>
 </div>
 <p id="gm"></p>
 
@@ -59,6 +88,7 @@
 	let chance = true;
 	let game_win_status = false;
 	let game_draw=0;
+	let player1 = false, player2 = false;
 	let game_status = [0,0,0,0,0,0,0,0,0];
 	const win_pos = [
 			[0,1,2],
@@ -95,6 +125,8 @@
 			let box2 = win_pos[r][1];
 			let box3 = win_pos[r][2];
 			boxShadow(box1, box2, box3);
+			player1 = true;
+			player2 = false;
 		}
 	}
 	for(let r = 0; r<8; r++){
@@ -106,9 +138,11 @@
 			let box2 = win_pos[r][1];
 			let box3 = win_pos[r][2];
 			boxShadow(box1, box2, box3);
+			player1 = false;
+			player2 = true;
 		}
 	}
-	if(game_draw == 9){
+	if(game_draw == 9 && player1 == false && player2 == false){
 		document.getElementById('pchance').style.backgroundColor="red";
 		document.getElementById('pchance').style.color="white";
 			document.getElementById('pchance').innerHTML = "Game Draw";
