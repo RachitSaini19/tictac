@@ -6,12 +6,12 @@
 	<title>TicTacToe</title>
 	<style type="text/css">
 		#box{
-		/*	border: 1px solid red; */
+/*			border: 1px solid red;*/
 			text-align: center;
 			position: relative;
 			top:10px;
 			width: 90vw;
-			height: 80vh;
+			height: 90vh;
 			margin-left:auto;
 			margin-right:auto;
 		}
@@ -32,7 +32,8 @@
 
 		#box div div{
 			display: inline-block;
-			border: 1px solid black;
+			border-bottom: 4px solid red;
+			box-shadow: 0px 0px 10px gray;
 			border-radius: 5px;
 			margin: 5px;
 			background-repeat: no-repeat;
@@ -55,6 +56,11 @@
 			background-color: white;
 			color:black;
 			cursor:pointer;
+		}
+		#pchance{
+			background-color: #caeeca;
+			padding:10px;
+			border-radius: 20px;
 		}
 	</style>
 </head>
@@ -118,7 +124,7 @@
 
 	for(let r = 0; r<8; r++){
 		if(game_status[win_pos[r][0]] == "P1" && game_status[win_pos[r][1]] == "P1" && game_status[win_pos[r][2]] == "P1"){
-			document.getElementById('pchance').style.backgroundColor="Yellow";
+			document.getElementById('pchance').style.backgroundColor="#acacff";
 			document.getElementById('pchance').innerHTML = "Player X wins";
 			game_win_status = true;
 			let box1 = win_pos[r][0];
@@ -131,7 +137,7 @@
 	}
 	for(let r = 0; r<8; r++){
 		if(game_status[win_pos[r][0]] == "P2" && game_status[win_pos[r][1]] == "P2" && game_status[win_pos[r][2]] == "P2"){
-			document.getElementById('pchance').style.backgroundColor="Yellow";
+			document.getElementById('pchance').style.backgroundColor="#acacff";
 			document.getElementById('pchance').innerHTML = "Player O wins";
 			game_win_status = true;
 			let box1 = win_pos[r][0];
